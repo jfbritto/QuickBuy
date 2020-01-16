@@ -14,10 +14,10 @@ namespace QuickBuy.Web
 
         public Startup(IConfiguration configuration)
         {
-            //var builder = new ConfigurationBuilder();
-            //builder.AddJsonFile("config.json", optional: false, reloadOnChange: true);
+            var builder = new ConfigurationBuilder();
+            builder.AddJsonFile("config.json", optional: false, reloadOnChange: true);
 
-            //Configuration = builder.Build();
+            Configuration = builder.Build();
         }
 
 
@@ -26,7 +26,7 @@ namespace QuickBuy.Web
         {
             services.AddControllersWithViews();
 
-            var connectionString = Configuration.GetConnectionString("MySqlConnection");
+            var connectionString = Configuration.GetConnectionString("QuickBuyDB");
             services.AddDbContext<QuickBuyContexto>(option =>
                                                            option.UseMySql(connectionString,
                                                                                 m => m.MigrationsAssembly("QuickBuy.Repositorio")));
