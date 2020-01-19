@@ -1,3 +1,3 @@
 # QuickBuy
 
-Projeto desenvolvino para aprendizado de novas tecnologias.
+Projeto desenvolvido para aprendizado de novas tecnologias.
