@@ -51,6 +51,7 @@
 
   <ItemGroup>
     <Folder Include="ClientApp\src\app\usuario\cadastro\" />
+    <Folder Include="ClientApp\src\assets\img\" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
