@@ -38,7 +38,7 @@ namespace QuickBuy.Web.Controllers
                 {
                     return Ok(usuarioRetorno);
                 }
-                return BadRequest("Uauário ou senha inválido!");
+                return BadRequest("Usuário ou senha inválido!");
             }catch(Exception ex)
             {
                 return BadRequest(ex.ToString());

@@ -31,7 +31,10 @@
            #senha="ngModel"
            required />
 
-    <button type="submit" class="btn btn-lg btn-primary btn-block mb-3" (click)="entrar()">Entrar</button>
+    <button type="submit" class="btn btn-lg btn-primary btn-block mb-3" (click)="entrar()" [disabled]="ativar_spinner">
+      <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
+      Entrar
+    </button>
 
     <div class="invalid-feedback" role="alert" *ngIf="email.invalid && (email.dirty || email.touched)">
       <div *ngIf="email.errors.required">
