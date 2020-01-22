@@ -1,6 +1,34 @@
 <div class="text-center">
   <form class="form-signin">
-    <h1 class="h4 mb-4 login">Login do cliente</h1>
+    <h1 class="h4 mb-4 login">Cadastro Novo Usuario</h1>
+
+    <label for="inputNome" class="sr-only">Nome</label>
+    <input type="text"
+           id="inputNome"
+           name="inputNome"
+           placeholder="Informe seu Nome"
+           class="form-control mb-2"
+           [ngClass]="{
+            'is-invalid': nome.invalid && (nome.dirty || nome.touched),
+            'is-valid': nome.valid && (nome.dirty || nome.touched)
+           }"
+           [(ngModel)]="usuario.nome"
+           #nome="ngModel"
+           required />
+
+    <label for="inputSobreNome" class="sr-only">Sobrenome</label>
+    <input type="text"
+           id="inputSobreNome"
+           name="sobreNome"
+           placeholder="Informe seu sobrenome"
+           class="form-control mb-2"
+           [ngClass]="{
+            'is-invalid': sobreNome.invalid && (sobreNome.dirty || sobreNome.touched),
+            'is-valid': sobreNome.valid && (sobreNome.dirty || sobreNome.touched)
+           }"
+           [(ngModel)]="usuario.sobreNome"
+           #sobreNome="ngModel"
+           required />
 
     <label for="inputEmail" class="sr-only">Email</label>
     <input type="email"
@@ -31,12 +59,26 @@
            #senha="ngModel"
            required />
 
-    <button type="submit" class="btn btn-lg btn-primary btn-block mb-3" (click)="entrar()" [disabled]="ativar_spinner">
+    <button type="submit" class="btn btn-lg btn-primary btn-block mb-3" (click)="cadastrar()" [disabled]="ativar_spinner">
       <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true" *ngIf="ativar_spinner"></span>
-      Entrar
+      Cadastrar
     </button>
 
-    <div>Novo por aqui? <a [routerLink]='["/cadastrar"]'>Cadastre-se</a></div>
+    <div>Já tem cadastro? <a [routerLink]='["/entrar"]'>Entrar</a></div>
+
+    <!--Verificações-->
+
+    <div class="invalid-feedback" role="alert" *ngIf="nome.invalid && (nome.dirty || nome.touched)">
+      <div *ngIf="nome.errors.required">
+        Nome deve ser preenchido
+      </div>
+    </div>
+
+    <div class="invalid-feedback" role="alert" *ngIf="sobreNome.invalid && (sobreNome.dirty || sobreNome.touched)">
+      <div *ngIf="sobreNome.errors.required">
+        Sobrenome deve ser preenchido
+      </div>
+    </div>
 
     <div class="invalid-feedback" role="alert" *ngIf="email.invalid && (email.dirty || email.touched)">
       <div *ngIf="email.errors.required">
@@ -54,11 +96,10 @@
     </div>
 
     <div class="alert alert-danger" *ngIf="mensagem">
-        {{mensagem}}
+      {{mensagem}}
     </div>
 
     <img src="..\..\..\assets\img\quick-b-img.jpg" [title]="titulo" />
-
 
   </form>
 </div>
