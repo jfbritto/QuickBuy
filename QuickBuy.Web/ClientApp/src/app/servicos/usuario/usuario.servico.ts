@@ -32,6 +32,10 @@ export class UsuarioServico {
     this._usuario = null;
   }
 
+  get headers(): HttpHeaders {
+    return new HttpHeaders().set('content-type', 'application/json');
+  }
+
   constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
     this.baseURL = baseUrl;
   }
@@ -51,16 +55,7 @@ export class UsuarioServico {
 
   public cadastrarUsuario(usuario: Usuario): Observable<Usuario> {
 
-    const headers = new HttpHeaders().set('content-type', 'application/json');
-
-    var body = {
-      email: usuario.email,
-      senha: usuario.senha,
-      nome: usuario.nome,
-      sobreNome: usuario.sobreNome
-    }
-
-    return this.http.post<Usuario>(this.baseURL + "api/usuario/cadastrarUsuario", body, { headers })
+    return this.http.post<Usuario>(this.baseURL + "api/usuario/cadastrarUsuario", JSON.stringify(usuario), { headers: this.headers })
 
   }
   

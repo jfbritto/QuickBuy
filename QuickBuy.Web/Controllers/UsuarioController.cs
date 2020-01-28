@@ -45,23 +45,24 @@ namespace QuickBuy.Web.Controllers
             }
         }
 
-        //[HttpPost("cadastrarUsuario")]
-        //public ActionResult cadastrarUsuario([FromBody] Usuario usuario)
-        //{
-        //    try
-        //    {
-        //        var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email, usuario.Senha);
+        [HttpPost("cadastrarUsuario")]
+        public ActionResult cadastrarUsuario([FromBody] Usuario usuario)
+        {
+            try
+            {
+                var usuarioRetorno = _usuarioRepositorio.Obter(usuario.Email);
 
-        //        if(usuarioRetorno != null)
-        //        {
-        //            return Ok(usuarioRetorno);
-        //        }
-        //        return BadRequest("Usuário ou senha inválido!");
-        //    }catch(Exception ex)
-        //    {
-        //        return BadRequest(ex.ToString());
-        //    }
-        //}
+                if (usuarioRetorno != null)
+                    return BadRequest("Usuário já cadastrado no sistema!");
+
+                _usuarioRepositorio.Adicionar(usuario);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
 
         [HttpPost]
         public ActionResult Post()
